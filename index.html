@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Portfolio</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .nav-link:hover {
+      color: #0ef !important;
+      text-decoration: underline;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+      background: url('background image.jpg') no-repeat center center fixed; /* Set your background image */
+      background-size: cover;
+      position: relative;
+    }
+
+    /* Glassy effect on body */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(31, 41, 58, 0.6); /* Semi-transparent overlay */
+      backdrop-filter: blur(10px); /* Glassy effect */
+      z-index: 1; /* Ensures it's layered under the content */
+    }
+
+    nav {
+      background-color: rgba(31, 41, 58, 0.8); /* Semi-transparent navbar */
+      position: fixed; /* Fixes the navbar at the top */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2; /* Keeps it on top of other content */
+      border-bottom: 0.5px solid black; /* Adds a black line under the navbar */
+    }
+
+    .navbar-brand, .nav-link {
+      color: white !important;
+    }
+
+    .navbar-nav {
+      margin: auto;
+    }
+
+    section {
+      position: relative;
+      z-index: 2;
+      padding: 60px 0; /* Reduced padding */
+      text-align: center;
+      margin: 0;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(31, 41, 58, 0.6);
+      backdrop-filter: blur(10px);
+      z-index: -1;
+      border-radius: 10px;
+    }
+
+    h1, h2 {
+      font-weight: bold;
+      color: white;
+      font-weight: 600;
+    }
+
+    p {
+      color: white;
+      font-weight: 300;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(31, 41, 58, 0.95);
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar-nav .nav-item {
+      margin: 0 15px;
+    }
+
+    .button {
+      width: 60px;
+      height: 60px;
+      background-color: violet;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      animation: bounce 2s infinite;
+      margin-top: 20px;
+    }
+
+    .button img {
+      width: 30px;
+      height: 30px;
+      filter: invert(1);
+      transition: transform 0.2s;
+    }
+
+    .button:hover img {
+      transform: translateY(-5px);
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* Heading Outside the Box */
+    .heading {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #0ef;
+    }
+
+    /* Outer Box with Transparent Overlay */
+    .aboutme-box {
+      background: rgba(0, 0, 0, 0.3); /* More transparent background */
+      border: 2px solid #0ef; /* Outer border */
+      padding: 30px; /* Increased padding */
+      border-radius: 10px;
+      max-width: 1400px; /* Increased width */
+      margin: 0 auto; /* Center the box */
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* Row for division with Flexbox */
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Left Section (Text) */
+    .left-section {
+      width: 50%;
+      padding: 20px;
+      text-align: justify; /* Justified Text */
+    }
+
+    /* Vertical Divider */
+    .divider {
+      width: 0.1px;
+      background-color: #0ef;
+      margin: 0 1px;
+    }
+
+    /* Vertical Rulers Above and Below */
+    .aboutme-box::before,
+    .aboutme-box::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background-color: black; /* Black vertical ruler */
+      margin: 10px 0; /* Space around the ruler */
+    }
+
+    /* Right Section (Image) */
+    .right-section {
+      width: 50%;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .aboutme-img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Media Query for smaller screens */
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+      }
+      .divider {
+        display: none;
+      }
+      .left-section, .right-section {
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Portfolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#home">HOME</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#about_me">ABOUT ME</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#skills">SKILLS</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#certifications">CERTIFICATIONS</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#services">SERVICES</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="container" style="display: flex;">
+      <div style="flex: 1; text-align: left; padding-right: 20px;">
+        <strong>INTRODUCTION</strong>
+        <div class="introduction" style="margin-left:10px;">
+          <h1>I'm Raghunadh,<br>
+            A Passionate<br>
+            <span class="typed-text"></span></h1>
+        </div>
+        <p>
+          I am a creative and detail-oriented individual with a passion for design. As an 
+          IBM Certified creative full stack web developer, I am always looking for new 
+          ways to improve the user experience of websites. I am also a Generative AI 
+          Specialist which makes me always willing to go the extra mile to meet the 
+          needs of my clients. I also founded a startup named Web Architect.
+        </p>
+      </div>
+      <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <img src="image.png" alt="image" style="max-width: auto; height: 300px;">
+      </div>
+    </div>
+    <center>
+      <div class = "button">
+        <a href="#about_me">
+          <img src="./down_arrow.svg" alt="">
+        </a>
+      </div>
+    </center>
+  </section>
+
+  <section id="about_me">
+    <div class="container">
+      <h1 class="heading">About Me</h1>
+      <div class="aboutme-box">
+        <div class="row" style="display: flex; align-items: center;">
+          <!-- Left Section -->
+          <div class="left-section" style="flex: 1; padding-right: 20px;">
+            <p>
+              I am a creative and detail-oriented individual with a passion for design. As 
+              an IBM Certified creative full stack web developer, I am always looking for 
+              new ways to improve the user experience of websites. I am also a Generative 
+              AI Specialist which makes me always willing to go the extra mile to meet the 
+              needs of my clients. I also founded a startup named Web Architect.
+            </p>
+          </div>
+  
+          <!-- Thin Divider (Vertical Line) -->
+           <div class="divider" ></div>
+  
+          <!-- Right Section -->
+          <div class="right-section" style="flex: 1; text-align: center;">
+            <img src="./image.png" alt="About Me Image" class="aboutme-img" style="max-width: 100%; border-radius: 100px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cQbOEga2HIQXQbQ7TIVzC0Qi2uKfPj9AaGIZjXb33jcNYBdn2C56EegBrCpAN4vY" crossorigin="anonymous"></script>
+</body>
+</html>
